@@ -1,0 +1,449 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MedPack Pouches | Nigel Williams Pharmacy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #004d78;
+      --blue:   #0077b6;
+      --mid:    #0096c7;
+      --light:  #90e0ef;
+      --pale:   #caf0f8;
+      --bg:     #f4fafd;
+      --white:  #ffffff;
+      --text:   #1a2e3b;
+      --muted:  #4a6a7a;
+      --gold:   #f5a623;
+      --radius: 16px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', Arial, sans-serif; background: var(--white); color: var(--text); line-height: 1.6; }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .section    { padding: 80px 0; }
+    .section-alt { background: var(--bg); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up { animation: fadeUp 0.65s ease both; }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.22s; }
+    .delay-3 { animation-delay: 0.34s; }
+    .delay-4 { animation-delay: 0.46s; }
+
+    nav {
+      background: var(--white);
+      border-bottom: 1px solid #e4eef4;
+      position: sticky; top: 0; z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,77,120,0.07);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 24px; max-width: 1100px; margin: 0 auto;
+    }
+    .nav-logo { font-size: 1.1rem; font-weight: 800; color: var(--navy); text-decoration: none; }
+    .nav-logo span { color: var(--mid); }
+    .nav-btn {
+      background: var(--blue); color: var(--white);
+      text-decoration: none; font-weight: 700; font-size: 0.9rem;
+      padding: 10px 24px; border-radius: 50px;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .nav-btn:hover { background: var(--navy); transform: translateY(-1px); }
+
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 55%, var(--mid) 100%);
+      padding: 80px 24px 0; overflow: hidden; position: relative;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 80% 50%, rgba(144,224,239,0.18) 0%, transparent 70%);
+    }
+    .hero-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: end;
+    }
+    .hero-text { padding-bottom: 60px; position: relative; z-index: 1; }
+    .hero-label {
+      display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--light);
+      background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25);
+      padding: 6px 16px; border-radius: 50px; margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.2rem); font-weight: 900; line-height: 1.1;
+      color: var(--white); margin-bottom: 20px;
+    }
+    .hero h1 span { color: var(--light); }
+    .hero p { font-size: 1.1rem; line-height: 1.8; color: rgba(255,255,255,0.88); margin-bottom: 32px; max-width: 480px; }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--white); color: var(--navy);
+      text-decoration: none; font-weight: 800; font-size: 1rem;
+      padding: 15px 36px; border-radius: 50px;
+      transition: transform 0.15s, box-shadow 0.15s;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.2); }
+    .btn-outline {
+      background: transparent; color: var(--white);
+      text-decoration: none; font-weight: 700; font-size: 1rem;
+      padding: 15px 36px; border-radius: 50px;
+      border: 2px solid rgba(255,255,255,0.5);
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.1); }
+    .hero-img { display: flex; justify-content: center; align-items: flex-end; position: relative; z-index: 1; }
+    .hero-img img {
+      width: 100%; max-width: 420px; border-radius: 16px 16px 0 0;
+      box-shadow: 0 -8px 40px rgba(0,0,0,0.25); object-fit: cover;
+    }
+
+    .stats { background: var(--navy); padding: 28px 24px; }
+    .stats-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; }
+    .stat { text-align: center; }
+    .stat-num { font-size: 2rem; font-weight: 900; color: var(--light); }
+    .stat-label { font-size: 0.8rem; font-weight: 600; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; }
+
+    .section-title { font-size: clamp(1.6rem, 3.5vw, 2.1rem); font-weight: 800; color: var(--navy); margin-bottom: 12px; }
+    .section-sub { font-size: 1.05rem; color: var(--muted); max-width: 560px; line-height: 1.75; margin-bottom: 48px; }
+    .title-center { text-align: center; }
+    .title-center .section-sub { margin-left: auto; margin-right: auto; }
+    .divider { width: 56px; height: 4px; border-radius: 2px; background: linear-gradient(90deg, var(--blue), var(--mid)); margin-bottom: 20px; }
+    .divider-center { margin-left: auto; margin-right: auto; }
+
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 32px; margin-top: 8px; }
+    .step { text-align: center; padding: 36px 24px; background: var(--white); border-radius: var(--radius); box-shadow: 0 4px 24px rgba(0,77,120,0.08); position: relative; }
+    .step-num {
+      position: absolute; top: -18px; left: 50%; transform: translateX(-50%);
+      width: 36px; height: 36px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue), var(--mid));
+      color: var(--white); font-weight: 800; font-size: 1rem;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,119,182,0.35);
+    }
+    .step-icon { font-size: 2.4rem; margin: 8px 0 16px; }
+    .step h3 { font-size: 1.05rem; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+    .step p { font-size: 0.92rem; color: var(--muted); line-height: 1.7; }
+
+    .photo-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-top: 48px; }
+    .photo-strip img {
+      width: 100%; height: 220px; object-fit: cover; border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,77,120,0.12);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .photo-strip img:hover { transform: scale(1.03); box-shadow: 0 8px 28px rgba(0,77,120,0.2); }
+
+    .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+    .benefit {
+      display: flex; gap: 16px; align-items: flex-start;
+      padding: 24px; background: var(--white); border-radius: var(--radius);
+      border: 1px solid #ddeef7; transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .benefit:hover { box-shadow: 0 8px 32px rgba(0,77,120,0.1); transform: translateY(-2px); }
+    .benefit-icon {
+      flex-shrink: 0; width: 48px; height: 48px; border-radius: 12px;
+      background: linear-gradient(135deg, var(--pale), #a8d8ea);
+      display: flex; align-items: center; justify-content: center; font-size: 1.4rem;
+    }
+    .benefit h3 { font-size: 0.97rem; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+    .benefit p { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
+
+    .personas { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+    .persona {
+      text-align: center; padding: 28px 20px; background: var(--white);
+      border-radius: var(--radius); border: 2px solid var(--pale);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .persona:hover { border-color: var(--mid); box-shadow: 0 8px 28px rgba(0,150,199,0.12); }
+    .persona-emoji { font-size: 2.6rem; margin-bottom: 12px; }
+    .persona h3 { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+    .persona p { font-size: 0.86rem; color: var(--muted); line-height: 1.6; }
+
+    .trust { background: linear-gradient(135deg, var(--navy), var(--blue)); padding: 64px 24px; text-align: center; }
+    .trust h2 { font-size: 1.8rem; font-weight: 800; color: var(--white); margin-bottom: 12px; }
+    .trust p { font-size: 1.05rem; color: rgba(255,255,255,0.82); max-width: 600px; margin: 0 auto 32px; line-height: 1.75; }
+    .trust-badges { display: flex; justify-content: center; flex-wrap: wrap; gap: 16px; }
+    .trust-badge { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25); color: var(--white); font-size: 0.88rem; font-weight: 600; padding: 10px 22px; border-radius: 50px; }
+
+    .faq-list { max-width: 760px; margin: 0 auto; }
+    details { border-bottom: 1px solid #ddeef7; padding: 20px 0; cursor: pointer; }
+    details:first-child { border-top: 1px solid #ddeef7; }
+    summary { font-weight: 700; font-size: 1rem; color: var(--navy); list-style: none; display: flex; justify-content: space-between; align-items: center; user-select: none; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: '+'; font-size: 1.4rem; font-weight: 400; color: var(--mid); transition: transform 0.2s; flex-shrink: 0; margin-left: 16px; }
+    details[open] summary::after { transform: rotate(45deg); }
+    details p { margin-top: 14px; font-size: 0.95rem; color: var(--muted); line-height: 1.75; }
+
+    .cta { background: var(--bg); padding: 80px 24px; text-align: center; }
+    .cta h2 { font-size: clamp(1.8rem, 4vw, 2.4rem); font-weight: 900; color: var(--navy); margin-bottom: 16px; }
+    .cta p { font-size: 1.05rem; color: var(--muted); max-width: 520px; margin: 0 auto 36px; line-height: 1.75; }
+    .cta-btns { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+    .btn-cta {
+      background: var(--blue); color: var(--white); text-decoration: none;
+      font-weight: 800; font-size: 1.05rem; padding: 18px 48px; border-radius: 50px;
+      box-shadow: 0 6px 24px rgba(0,119,182,0.35);
+      transition: background 0.2s, transform 0.15s, box-shadow 0.15s;
+    }
+    .btn-cta:hover { background: var(--navy); transform: translateY(-2px); box-shadow: 0 10px 32px rgba(0,77,120,0.35); }
+    .btn-cta-ghost {
+      background: var(--white); color: var(--navy); text-decoration: none;
+      font-weight: 700; font-size: 1.05rem; padding: 18px 48px; border-radius: 50px;
+      border: 2px solid #c0ddef; transition: border-color 0.2s;
+    }
+    .btn-cta-ghost:hover { border-color: var(--blue); }
+    .cta-note { margin-top: 20px; font-size: 0.82rem; color: #9ab; }
+
+    footer { background: var(--text); color: rgba(255,255,255,0.65); padding: 32px 24px; text-align: center; font-size: 0.85rem; }
+    footer a { color: var(--light); text-decoration: none; }
+
+    @media (max-width: 720px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-img { display: none; }
+      .hero-text { padding-bottom: 60px; }
+      .hero-btns { flex-direction: column; }
+      .btn-primary, .btn-outline { text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-text fade-up">
+      <div class="hero-label">Nigel Williams Pharmacy Service</div>
+      <h1>The <span>right dose</span>,<br>at the right time,<br>every time.</h1>
+      <p>MedPack Pouches take the stress out of managing multiple medications. Every dose is pre-sorted, clearly labelled, and ready to tear &#8212; no blister packs, no confusion, no missed doses.</p>
+      <div class="hero-btns">
+        <a href="#sign-up" class="btn-primary">Get Started &#8212; It&#39;s Free</a>
+        <a href="#how-it-works" class="btn-outline">How It Works</a>
+      </div>
+    </div>
+    <div class="hero-img fade-up delay-2">
+      <img src="images/hero-pouch.jpg" alt="MedPack medication pouches" onerror="this.parentElement.style.display='none'" />
+    </div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stats-inner">
+    <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Accuracy checked by pharmacists</div></div>
+    <div class="stat"><div class="stat-num">4&#215;</div><div class="stat-label">Daily dose times organised</div></div>
+    <div class="stat"><div class="stat-num">30/60/90</div><div class="stat-label">Day supply options</div></div>
+    <div class="stat"><div class="stat-num">Free</div><div class="stat-label">NHS prescription service</div></div>
+  </div>
+</div>
+
+<section class="section section-alt" id="how-it-works">
+  <div class="container">
+    <div class="title-center">
+      <div class="divider divider-center"></div>
+      <h2 class="section-title">How It Works</h2>
+      <p class="section-sub">Getting started takes just a few minutes &#8212; we handle everything from prescription requests to your supply being ready.</p>
+    </div>
+    <div class="steps">
+      <div class="step fade-up delay-1">
+        <div class="step-num">1</div>
+        <div class="step-icon">&#128203;</div>
+        <h3>Register With Us</h3>
+        <p>Sign up in store or online. Nominate Nigel Williams Pharmacy as your NHS dispensing pharmacy.</p>
+      </div>
+      <div class="step fade-up delay-2">
+        <div class="step-num">2</div>
+        <div class="step-icon">&#128138;</div>
+        <h3>We Sort Your Medication</h3>
+        <p>Our pharmacy team organises every dose into individual, clearly labelled pouches in the exact order you need to take them.</p>
+      </div>
+      <div class="step fade-up delay-3">
+        <div class="step-num">3</div>
+        <div class="step-icon">&#128230;</div>
+        <h3>Collect or Get Delivered</h3>
+        <p>Pick up from any branch or arrange delivery. Your MedPack arrives ready to go &#8212; just tear and take.</p>
+      </div>
+      <div class="step fade-up delay-4">
+        <div class="step-num">4</div>
+        <div class="step-icon">&#128260;</div>
+        <h3>We Reorder Automatically</h3>
+        <p>We handle your repeat prescription requests so you never run out. One less thing to think about.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-bottom:48px;">
+  <div class="container">
+    <div class="title-center">
+      <div class="divider divider-center"></div>
+      <h2 class="section-title">Your Medication, Perfectly Prepared</h2>
+      <p class="section-sub">Every pouch is printed with your name, the date, the time of day, and each tablet inside &#8212; so there&#39;s never any guesswork.</p>
+    </div>
+    <div class="photo-strip">
+      <img src="images/pouch-label.jpg"   alt="Labelled medication pouch showing date and medications" />
+      <img src="images/pouch-tearing.jpg" alt="Tearing open a MedPack pouch" />
+      <img src="images/pouch-set.jpg"     alt="Morning, Lunchtime and Tea Time pouches" />
+      <img src="images/nwp-pouch.jpg"     alt="Nigel Williams Pharmacy MedPack pouch" />
+      <img src="images/pouch-roll.jpg"    alt="Full roll of MedPack pouches" />
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="divider"></div>
+    <h2 class="section-title">Why Patients Love MedPack</h2>
+    <p class="section-sub">Designed to make medication management effortless &#8212; for patients and their families.</p>
+    <div class="benefits-grid">
+      <div class="benefit fade-up">
+        <div class="benefit-icon">&#127991;&#65039;</div>
+        <div>
+          <h3>Clear, Detailed Labels</h3>
+          <p>Every pouch shows your name, date, time of day, and the name and dose of every tablet inside. No more squinting at blister pack warnings.</p>
+        </div>
+      </div>
+      <div class="benefit fade-up delay-1">
+        <div class="benefit-icon">&#9988;</div>
+        <div>
+          <h3>Easy-To-Tear Design</h3>
+          <p>No fiddly bottles, no foil packs. Each pouch tears open cleanly &#8212; ideal for patients with arthritis or limited dexterity.</p>
+        </div>
+      </div>
+      <div class="benefit fade-up delay-2">
+        <div class="benefit-icon">&#128737;&#65039;</div>
+        <div>
+          <h3>Pharmacist-Checked Accuracy</h3>
+          <p>Every pouch is verified by our trained pharmacy team before it reaches you. Total peace of mind with every dose.</p>
+        </div>
+      </div>
+      <div class="benefit fade-up delay-3">
+        <div class="benefit-icon">&#9200;</div>
+        <div>
+          <h3>Never Miss a Dose</h3>
+          <p>Pouches are arranged chronologically &#8212; morning, lunchtime, evening, bedtime &#8212; so you always know exactly where you are.</p>
+        </div>
+      </div>
+      <div class="benefit fade-up">
+        <div class="benefit-icon">&#127946;</div>
+        <div>
+          <h3>Perfect for On-The-Go</h3>
+          <p>Tear off what you need and take it with you. No carrying multiple boxes or bottles &#8212; just the pouches you need.</p>
+        </div>
+      </div>
+      <div class="benefit fade-up delay-1">
+        <div class="benefit-icon">&#127961;&#65039;</div>
+        <div>
+          <h3>All Branches, Same Great Service</h3>
+          <p>Available at every Nigel Williams Pharmacy branch. Simply register at your nearest store.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="title-center">
+      <div class="divider divider-center"></div>
+      <h2 class="section-title">Who Is MedPack For?</h2>
+      <p class="section-sub">MedPack is particularly valuable for anyone who takes more than one medication &#8212; or anyone caring for someone who does.</p>
+    </div>
+    <div class="personas">
+      <div class="persona fade-up">
+        <div class="persona-emoji">&#128116;</div>
+        <h3>Elderly Patients</h3>
+        <p>Simplifies complex routines and removes the risk of mix-ups with multiple medications.</p>
+      </div>
+      <div class="persona fade-up delay-1">
+        <div class="persona-emoji">&#128102;</div>
+        <h3>Children</h3>
+        <p>Parents can see exactly what&#39;s in each pouch &#8212; no confusion over doses or timing.</p>
+      </div>
+      <div class="persona fade-up delay-2">
+        <div class="persona-emoji">&#128138;</div>
+        <h3>Complex Routines</h3>
+        <p>Managing four or more different medications daily? MedPack makes it straightforward.</p>
+      </div>
+      <div class="persona fade-up delay-3">
+        <div class="persona-emoji">&#10084;&#65039;</div>
+        <h3>Carers &amp; Families</h3>
+        <p>Check at a glance whether a loved one has taken their medication today.</p>
+      </div>
+      <div class="persona fade-up delay-4">
+        <div class="persona-emoji">&#129504;</div>
+        <h3>Memory Difficulties</h3>
+        <p>Ideal for patients with dementia or memory issues who need extra clarity and routine.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="trust">
+  <h2>Trusted, Local, NHS-Registered</h2>
+  <p>Nigel Williams Pharmacy has been serving our communities for decades. Our MedPack service is delivered by the same qualified pharmacists you trust, right in your local branch.</p>
+  <div class="trust-badges">
+    <span class="trust-badge">&#10003; GPhC Registered Pharmacy</span>
+    <span class="trust-badge">&#10003; NHS Dispensing Contractor</span>
+    <span class="trust-badge">&#10003; Pharmacist-Verified Every Pouch</span>
+    <span class="trust-badge">&#10003; Available at All Branches</span>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="title-center">
+      <div class="divider divider-center"></div>
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <p class="section-sub">Everything you need to know before signing up.</p>
+    </div>
+    <div class="faq-list">
+      <details open>
+        <summary>Is MedPack free on the NHS?</summary>
+        <p>Yes. If you receive your medications on an NHS prescription, the MedPack service itself is free of charge. You pay the standard NHS prescription charge per item (or nothing if you are exempt) &#8212; the pouch dispensing service has no additional cost.</p>
+      </details>
+      <details>
+        <summary>Which medications can go in the pouches?</summary>
+        <p>Most solid oral medications &#8212; tablets and capsules &#8212; can be placed in MedPack pouches. Some medications cannot be pouched for safety or stability reasons (for example, certain liquids, inhalers, or items requiring refrigeration). Our pharmacy team will advise you on anything that needs to stay in its original packaging.</p>
+      </details>
+      <details>
+        <summary>How do I sign up?</summary>
+        <p>Simply visit your nearest Nigel Williams Pharmacy branch and speak to a member of our team, or click the Sign Up button below to get in touch. We will take your details, confirm your medications with your GP, and get your first MedPack ready for you.</p>
+      </details>
+      <details>
+        <summary>How long does it take to set up?</summary>
+        <p>Once we have received your prescription and confirmed the details with your GP, most patients receive their first MedPack within 5&#8211;7 working days. After that, your repeat supply is ready whenever your prescription is due.</p>
+      </details>
+      <details>
+        <summary>Can I still use MedPack if some medications cannot go in the pouches?</summary>
+        <p>Absolutely. Items that cannot be pouched &#8212; such as inhalers, liquids, or creams &#8212; are dispensed separately alongside your MedPack at the same time, so everything comes together.</p>
+      </details>
+      <details>
+        <summary>What if my medication changes?</summary>
+        <p>Just let us know. Our team will update your MedPack as soon as your GP issues the updated prescription. You will never receive an outdated pouch &#8212; our team checks your current medication list every cycle.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="sign-up">
+  <h2>Ready to simplify your medications?</h2>
+  <p>Speak to our friendly team in store, or get in touch online and we will get you set up with MedPack &#8212; completely free.</p>
+  <div class="cta-btns">
+    <a href="/contact" class="btn-cta">Sign Up Today</a>
+    <a href="/find-us" class="btn-cta-ghost">Find Your Branch</a>
+  </div>
+  <p class="cta-note">Available at all Nigel Williams Pharmacy branches &nbsp;&#183;&nbsp; NHS service &nbsp;&#183;&nbsp; No extra charge</p>
+</section>
+
+
+
+</body>
+</html>
